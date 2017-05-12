@@ -73,6 +73,8 @@ public class ConectaBanco {
 //        --
 //        -- Table structure for table `agenda`
 //        --
+//        CREATE DATABASE 'clinica';
+//        use clinica;
 //
 //        DROP TABLE IF EXISTS `agenda`;
 ///*!40101 SET @saved_cs_client     = @@character_set_client */;
