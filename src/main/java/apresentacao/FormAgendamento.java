@@ -13,7 +13,8 @@ import javax.swing.ListSelectionModel;
 import negocio.Agenda;
 import persistencia.AgendaDAO;
 import persistencia.ModeloTabela;
-
+import java.util.Calendar;
+//
 public class FormAgendamento extends javax.swing.JFrame {
     ConectaBanco con = new ConectaBanco();
     Agenda agenda = new Agenda();
@@ -55,7 +56,7 @@ public class FormAgendamento extends javax.swing.JFrame {
         jComboBoxMedico = new javax.swing.JComboBox<>();
         tbnFinalizar = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
-        tfData = new com.toedter.calendar.JDateChooser();
+        tfData = new javax.swing.JFormattedTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -136,6 +137,12 @@ public class FormAgendamento extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
 
+        try {
+            tfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,10 +168,11 @@ public class FormAgendamento extends javax.swing.JFrame {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                         .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                                        .addComponent(tfData, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(jComboBoxMedico, javax.swing.GroupLayout.Alignment.LEADING, 0, 135, Short.MAX_VALUE))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(jLabel5))
-                                                                        .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                                .addComponent(jLabel5)))))
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(18, 18, 18)
@@ -192,11 +200,11 @@ public class FormAgendamento extends javax.swing.JFrame {
                                         .addComponent(jComboBoxTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5)
                                         .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
                                         .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(32, 32, 32)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -258,12 +266,13 @@ public class FormAgendamento extends javax.swing.JFrame {
     }
 
     private void tbnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {
+
         try {
 
             agenda.setNomePaciente(tfNome.getText());
             agenda.setNomeMedico((String)jComboBoxMedico.getSelectedItem());
             agenda.setTurno((String)jComboBoxTurno.getSelectedItem());
-            agenda.setData(tfData.getDate());
+            agenda.setData(tfData.getText());
             agenda.setMotivo(tfMotivo.getText());
             agenda.setStatus("Aberto");
             dao.salvar(agenda);
@@ -348,8 +357,8 @@ public class FormAgendamento extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable tabPaciente;
     private javax.swing.JToggleButton tbnFinalizar;
-    private com.toedter.calendar.JDateChooser tfData;
+    private javax.swing.JFormattedTextField tfData;
     private javax.swing.JTextField tfMotivo;
     private javax.swing.JTextField tfNome;
-    // End of variables declaration
+
 }

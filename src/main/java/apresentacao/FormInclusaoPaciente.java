@@ -18,7 +18,6 @@ public class FormInclusaoPaciente extends javax.swing.JFrame {
      * Creates new form FormInclusao
      */
     public FormInclusaoPaciente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
     }
 
@@ -179,20 +178,15 @@ public class FormInclusaoPaciente extends javax.swing.JFrame {
             paciente.setTipoConsulta(tfTipo.getText());
             paciente.setSexo(tfSexo.getText());
 
-            try {
-                dao.salvar(paciente);
-            } catch (SQLException ex) {
-                Logger.getLogger(FormInclusaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            dao.salvar(paciente);
 
-            // Mostramos uma janela com uma mensagem de sucesso.
             JOptionPane.showMessageDialog(this, "Paciente incluído com sucesso!", "Novo Contato", JOptionPane.INFORMATION_MESSAGE);
 
-            // Fecha a janela.
+
             dispose();
 
-        } catch(Exception exc) { // Caso o dia, mês ou ano não possam ser convertidos para int, essa exceção irá ocorrer.
-            JOptionPane.showMessageDialog(this, "Paciente Não incluido!", "Erro", JOptionPane.ERROR_MESSAGE);
+             } catch(Exception exc) {
+                JOptionPane.showMessageDialog(this, "Paciente Não incluido!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

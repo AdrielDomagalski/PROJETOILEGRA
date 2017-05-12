@@ -17,7 +17,7 @@ public class MedicoDAO {
     private PreparedStatement sqlCarregar;
     Medico medico = new Medico();
 
-    public boolean salvar(Medico medico) throws SQLException{
+    public boolean salvar(Medico medico) {
         conn.Conexão();
 
         try {
@@ -38,7 +38,7 @@ public class MedicoDAO {
             return false;
         } finally{
 
-            conn.con.close();
+            return false;
         }
     }
 

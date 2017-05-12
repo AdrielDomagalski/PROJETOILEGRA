@@ -15,9 +15,7 @@ public class PesquisaMedico extends javax.swing.JFrame {
     ConectaBanco con = new ConectaBanco();
     Medico med = new Medico();
     MedicoDAO dao = new MedicoDAO();
-    /**
-     * Creates new form PesquisaMedico
-     */
+
     public PesquisaMedico() {
         initComponents();
         PreencheTabela("select * from medico order by id");

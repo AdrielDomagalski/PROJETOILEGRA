@@ -11,7 +11,7 @@ public class Agenda {
     protected String nomePaciente;
     protected String nomeMedico;
     protected String turno;
-    protected Date data;
+    protected String data;
     protected String status;
     protected String motivo;
 
@@ -47,11 +47,12 @@ public class Agenda {
         this.turno = turno;
     }
 
-    public Date getData() {
+    public String getData() {
+
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

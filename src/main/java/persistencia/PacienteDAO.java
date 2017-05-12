@@ -12,7 +12,7 @@ public class PacienteDAO {
     private PreparedStatement sqlCarregar;
     Paciente paciente = new Paciente();
 
-    public boolean salvar(Paciente paciente) throws SQLException{
+    public boolean salvar(Paciente paciente){
         conn.Conexão();
 
         try {
@@ -25,14 +25,9 @@ public class PacienteDAO {
             stmt.setString(5, paciente.getTipoConsulta());
             stmt.setString(6, paciente.getSexo());
             stmt.executeUpdate();
-
-
             return true;
         } catch (SQLException ex) {
             return false;
-        } finally{
-
-            conn.con.close();
         }
     }
 

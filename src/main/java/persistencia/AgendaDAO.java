@@ -29,11 +29,12 @@ public class AgendaDAO {
             stmt.setInt(1, codPaciente);
             stmt.setString(2, agenda.getTurno());
             stmt.setInt(3, codMedico);
-            stmt.setDate(4, new java.sql.Date(agenda.getData().getTime()));
+            stmt.setString(4,agenda.getData());
             stmt.setString(5,agenda.getMotivo());
             stmt.setString(6, agenda.getStatus());
             stmt.executeUpdate();
 
+            return true;
         } catch (SQLException ex) {
             JOptionPane.showInputDialog("Erro ao salvar Agendamento", ex);
         }
